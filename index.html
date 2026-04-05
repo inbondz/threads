@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Inbondz | Threads</title>
+    <title>Inbondz Threads</title>
     <link rel="icon" href="https://www.inbondz.com/favicon.png" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -175,13 +175,8 @@
 
         /* --- 404 STRICT ISOLATION --- */
         .view-404-container { width: 100%; flex-direction: column; min-height: 100vh; background: var(--bg-white);}
-        .error-header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 40px; border-bottom: 1px solid var(--border-light); }
-        .hamburger-container { justify-self: start; }
-        .hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; width: 28px; }
-        .hamburger span { width: 100%; height: 2px; background: var(--text-main); }
-        .error-logo { justify-self: center; font-family: "Carter One", cursive; font-size: 28px; color: var(--inbondz-brand); text-decoration: none; letter-spacing: 0.5px; }
-        .header-action { justify-self: end; }
-        .btn-top { background: var(--text-main); color: #fff; padding: 10px 24px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 500; border: 1px solid var(--text-main); white-space: nowrap; }
+        .error-header { display: flex; justify-content: center; align-items: center; padding: 20px 40px; border-bottom: 1px solid var(--border-light); }
+        .error-logo { font-family: "Carter One", cursive; font-size: 28px; color: var(--inbondz-brand); text-decoration: none; letter-spacing: 0.5px; }
         .error-content-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
         .error-code { font-family: "Carter One", cursive; font-size: 80px; color: var(--border-light); margin-bottom: 16px; line-height: 1; }
         .error-msg { color: var(--text-muted); margin-bottom: 32px; font-size: 18px; max-width: 300px; line-height: 1.5;}
@@ -229,9 +224,7 @@
 
     <div id="view-404" class="view-section view-404-container">
         <header class="error-header">
-            <div class="hamburger-container"><div class="hamburger"><span></span><span></span><span></span></div></div>
             <a href="https://threads.inbondz.com" class="error-logo">Inbondz</a>
-            <div class="header-action"><a href="https://donate.inbondz.com/" class="btn-top">Donate</a></div>
         </header>
         <div class="error-content-wrapper">
             <div class="error-code">404</div>
@@ -319,7 +312,7 @@
         }
 
         async function getBadge(username) {
-            if(username === 'inbondz' || username === 'rwasimsk') {
+            if(username === 'inbondz' || username === 'wasimsk') {
                 return `<span class="badge-wrapper" onclick="openSheet(event, 'core', '${username}')">${TICK_BLUE} <img src="https://www.inbondz.com/favicon.png" style="width:14px;height:14px;margin-left:4px;border-radius:4px;"></span>`;
             }
             const user = await fetchUser(username);
@@ -337,7 +330,7 @@
             document.getElementById('sheetIcon').innerHTML = ''; 
             
             if (type === 'core') {
-                document.getElementById('sheetIcon').innerHTML = `<img src="https://www.inbondz.com/favicon.png" style="width:48px;height:48px;border-radius:8px;">`;
+                document.getElementById('sheetIcon').innerHTML = `<div style="display:flex; align-items:center; gap:12px;">${TICK_BLUE_LARGE} <img src="https://www.inbondz.com/favicon.png" style="width:48px;height:48px;border-radius:8px;"></div>`;
                 document.getElementById('sheetTitle').innerText = "Verified Core Team";
                 document.getElementById('sheetDesc').innerText = "Verified by Inbondz. You are viewing an official Inbondz affiliated profile.";
                 document.getElementById('sheetBtn').innerText = "View Profile";
@@ -392,7 +385,6 @@
             window.scrollTo(0,0);
         }
 
-        // --- BATCH FETCHING ENGINE ---
         async function loadFeed(type = 'topstories', skipHistory = false) {
             if(!skipHistory) updateURL('feed', type);
             setHeader('Inbondz Threads', true, false);
@@ -447,7 +439,6 @@
             }
         }
 
-        // --- CORE CARD RENDERER (Now Context Aware) ---
         async function renderCard(item) {
             if (!item || item.deleted || item.dead) return '';
             const badge = await getBadge(item.by);
@@ -455,8 +446,23 @@
             const hours = Math.floor((Date.now()/1000 - item.time) / 3600);
             
             let extraHTML = '';
-            
-            // Provide context for Comments vs Stories
+            let contextHTML = '';
+            let targetId = item.id;
+
+            if (item.type === 'comment' && item.parent) {
+                targetId = item.parent; 
+                try {
+                    const parentRes = await fetch(`${API}/item/${item.parent}.json`);
+                    const parentData = await parentRes.json();
+                    if (parentData && parentData.by) {
+                        contextHTML = `<div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                            Replying to <span style="color: var(--action-blue); cursor: pointer; margin-left: 4px; font-weight: 500;" onclick="event.stopPropagation(); viewProfile('${parentData.by}')">@${parentData.by}</span>
+                        </div>`;
+                    }
+                } catch(e) {}
+            }
+
             let displayTitle = item.title ? `<div class="story-title">${item.title}</div>` : '';
             if (item.type === 'comment' && item.title) {
                 displayTitle = `<div class="story-title" style="margin-bottom: 6px;"><span style="color: var(--action-blue); font-weight: 500;">Thread:</span> ${item.title}</div>`;
@@ -471,7 +477,6 @@
             let domain = '';
             if (item.url) { try { domain = new URL(item.url).hostname.replace('www.',''); } catch(e){} }
 
-            // Parent Button Injection
             let parentBtnHTML = '';
             if (item.parent) {
                 parentBtnHTML = `
@@ -482,9 +487,10 @@
             }
 
             return `
-                <div class="thread-post" onclick="loadThread(${item.id})">
+                <div class="thread-post" onclick="loadThread(${targetId})">
                     <div class="avatar" onclick="event.stopPropagation(); viewProfile('${item.by}')">${initial}</div>
                     <div class="post-content">
+                        ${contextHTML}
                         <div class="user-meta">
                             <span class="username" onclick="event.stopPropagation(); viewProfile('${item.by}')">${item.by}</span>
                             ${badge} <span class="timestamp">· ${hours}h</span>
@@ -512,7 +518,6 @@
                 const res = await fetch(`${ALGOLIA}/items/${id}`);
                 const data = await res.json();
                 
-                // Mapped to include story_title if viewed independently
                 const storyFormat = { 
                     id: data.id, by: data.author, time: data.created_at_i, 
                     title: data.title || data.story_title, 
@@ -559,7 +564,6 @@
             return html;
         }
 
-        // --- UPGRADED ALGOLIA PROFILE ENGINE ---
         async function viewProfile(username, skipHistory = false) {
             if(!username || username === 'undefined') return;
             if(!skipHistory) updateURL('profile', username);
@@ -586,7 +590,6 @@
 
             if(user.submitted && user.submitted.length > 0) {
                 try {
-                    // Algolia Profile Search (Injects Story Titles automatically)
                     const res = await fetch(`${ALGOLIA}/search_by_date?tags=author_${username}&hitsPerPage=15`);
                     const data = await res.json();
                     
@@ -635,7 +638,6 @@
             const val = document.getElementById('globalInput').value.trim();
             if(!val) return;
             
-            // X-Style Direct Profile Routing
             if (val.startsWith('@')) {
                 const username = val.substring(1); 
                 viewProfile(username);
