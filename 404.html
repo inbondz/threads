@@ -458,6 +458,24 @@
             const hours = Math.floor((Date.now()/1000 - item.time) / 3600);
             
             let extraHTML = '';
+            let contextHTML = '';
+            let targetId = item.id;
+
+            // --- THE PARENT CONTEXT ENGINE ---
+            if (item.type === 'comment' && item.parent) {
+                targetId = item.parent; // Route clicks to the parent discussion
+                try {
+                    const parentRes = await fetch(`${API}/item/${item.parent}.json`);
+                    const parentData = await parentRes.json();
+                    if (parentData && parentData.by) {
+                        contextHTML = `<div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                            Replying to <span style="color: var(--action-blue); cursor: pointer; margin-left: 4px; font-weight: 500;" onclick="event.stopPropagation(); viewProfile('${parentData.by}')">@${parentData.by}</span>
+                        </div>`;
+                    }
+                } catch(e) {}
+            }
+
             if (item.text) extraHTML += `<div class="hn-text">${autoLink(item.text)}</div>`;
             if (item.type === 'poll' && item.parts) {
                 const opts = await Promise.all(item.parts.map(p => fetch(`${API}/item/${p}.json`).then(r=>r.json())));
@@ -468,9 +486,10 @@
             if (item.url) { try { domain = new URL(item.url).hostname.replace('www.',''); } catch(e){} }
 
             return `
-                <div class="thread-post" onclick="loadThread(${item.id})">
+                <div class="thread-post" onclick="loadThread(${targetId})">
                     <div class="avatar" onclick="event.stopPropagation(); viewProfile('${item.by}')">${initial}</div>
                     <div class="post-content">
+                        ${contextHTML}
                         <div class="user-meta">
                             <span class="username" onclick="event.stopPropagation(); viewProfile('${item.by}')">${item.by}</span>
                             ${badge} <span class="timestamp">· ${hours}h</span>
@@ -562,6 +581,7 @@
             document.getElementById('content').innerHTML = html;
 
             if(user.submitted && user.submitted.length > 0) {
+                // Fetch up to 15 items for the profile view
                 const items = await Promise.all(user.submitted.slice(0, 15).map(id => fetch(`${API}/item/${id}.json`).then(r=>r.json())));
                 const feedHtml = await Promise.all(items.map(renderCard));
                 document.getElementById('profile-feed').innerHTML = feedHtml.join('');
@@ -590,6 +610,15 @@
         function handleSearchAction() {
             const val = document.getElementById('globalInput').value.trim();
             if(!val) return;
+            
+            // X-Style Direct Profile Routing
+            if (val.startsWith('@')) {
+                const username = val.substring(1); 
+                viewProfile(username);
+                document.getElementById('globalInput').value = '';
+                return;
+            }
+
             handleSearch(val);
         }
 
