@@ -552,10 +552,21 @@
         }
 
         function handleSearchAction() {
-            const val = document.getElementById('globalInput').value.trim();
-            if(!val) return;
-            handleSearch(val);
-        }
+    const val = document.getElementById('globalInput').value.trim();
+    if(!val) return;
+
+    // The Masterclass Profile Routing
+    if (val.startsWith('@')) {
+        const username = val.substring(1); // Removes the '@'
+        viewProfile(username);             // Instantly fetches the user from Firebase
+        document.getElementById('globalInput').value = '';
+        return;
+    }
+
+    // Standard Content Search
+    handleSearch(val);
+    }
+
 
         // --- INITIAL BOOT & BACK BUTTON HANDLING ---
         function router() {
