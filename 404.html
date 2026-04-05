@@ -25,13 +25,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
 
-        body {
-            background-color: var(--bg-white); color: var(--text-main);
-            display: flex; justify-content: center;
-            overscroll-behavior-y: none;
-            overflow-x: hidden;
-            width: 100vw;
-        }
+        body { background-color: var(--bg-white); color: var(--text-main); display: flex; justify-content: center; overscroll-behavior-y: none; overflow-x: hidden; width: 100vw; }
 
         /* --- STRICT ROUTING VIEWS --- */
         .view-section { display: none !important; width: 100%; }
@@ -39,61 +33,26 @@
         .view-section.active-flex { display: flex !important; }
 
         /* --- APP CONTAINER --- */
-        .app-container {
-            width: 100%; max-width: 1000px; margin: 0 auto;
-            border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light);
-            min-height: 100vh; position: relative;
-            background: var(--bg-white);
-            display: flex; flex-direction: column;
-        }
+        .app-container { width: 100%; max-width: 1000px; margin: 0 auto; border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light); min-height: 100vh; position: relative; background: var(--bg-white); display: flex; flex-direction: column; }
 
         /* --- HEADER & TOP NAV --- */
-        .feed-header {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px);
-            padding: 16px 16px 0 16px; border-bottom: 1px solid var(--border-light);
-        }
-
+        .feed-header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); padding: 16px 16px 0 16px; border-bottom: 1px solid var(--border-light); }
         .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-        
-        .brand-title {
-            font-family: 'Carter One', cursive; font-size: 24px;
-            color: var(--inbondz-brand); cursor: pointer; letter-spacing: 0.5px;
-            text-decoration: none; display: flex; align-items: center;
-        }
-
+        .brand-title { font-family: 'Carter One', cursive; font-size: 24px; color: var(--inbondz-brand); cursor: pointer; letter-spacing: 0.5px; text-decoration: none; display: flex; align-items: center; }
         .back-btn { background: none; border: none; font-size: 16px; font-weight: 600; color: var(--text-main); cursor: pointer; display: flex; align-items: center;}
         .back-btn svg { width: 24px; height: 24px; margin-right: 8px; }
 
-        /* X-Style Scrollable Categories */
-        .category-nav {
-            display: flex; overflow-x: auto; scrollbar-width: none;
-            border-bottom: 1px solid var(--border-light); margin: 0 -16px; padding: 0 16px;
-        }
+        .category-nav { display: flex; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border-light); margin: 0 -16px; padding: 0 16px; }
         .category-nav::-webkit-scrollbar { display: none; }
-        .cat-btn {
-            background: none; border: none; padding: 12px 16px; font-size: 15px;
-            font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap;
-            border-bottom: 3px solid transparent; transition: 0.2s;
-        }
+        .cat-btn { background: none; border: none; padding: 12px 16px; font-size: 15px; font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; transition: 0.2s; }
         .cat-btn.active { color: var(--text-main); border-bottom: 3px solid var(--action-blue); }
 
         /* --- FEED & POSTS --- */
         .feed-content { flex: 1; padding-bottom: 80px; }
-        
-        .thread-post {
-            display: flex; padding: 16px; border-bottom: 1px solid var(--border-light);
-            transition: background 0.2s; cursor: pointer; word-wrap: break-word; overflow-wrap: anywhere;
-        }
+        .thread-post { display: flex; padding: 16px; border-bottom: 1px solid var(--border-light); transition: background 0.2s; cursor: pointer; word-wrap: break-word; overflow-wrap: anywhere; }
         .thread-post:hover { background-color: var(--hover-bg); }
 
-        .avatar {
-            width: 44px; height: 44px; border-radius: 50%;
-            background-color: var(--text-main); color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 600; font-size: 18px; margin-right: 12px; flex-shrink: 0; cursor: pointer;
-        }
-
+        .avatar { width: 44px; height: 44px; border-radius: 50%; background-color: var(--text-main); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px; margin-right: 12px; flex-shrink: 0; cursor: pointer; }
         .post-content { flex-grow: 1; min-width: 0; }
         .user-meta { display: flex; align-items: center; font-size: 15px; margin-bottom: 4px; flex-wrap: wrap;}
         .username { font-weight: 600; cursor: pointer; }
@@ -105,7 +64,6 @@
         .story-domain { display: inline-flex; align-items: center; font-size: 13px; color: var(--action-blue); margin-top: 4px; text-decoration: none; word-break: break-all;}
         .story-domain svg { margin-right: 4px; flex-shrink: 0;}
 
-        /* Masterclass Link Parsing CSS */
         .hn-text { font-size: 14px; line-height: 1.5; color: var(--text-main); margin-top: 8px; }
         .hn-text p { margin-bottom: 8px; }
         .hn-text a { color: var(--action-blue) !important; text-decoration: none !important; word-break: break-all !important; }
@@ -123,38 +81,29 @@
         .action-btn:hover { color: var(--action-blue); }
         .parent-btn { font-weight: 500; }
 
-        /* --- COMMENTS TREE --- */
         .comment-block { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--border-light); border-left: 2px solid transparent; }
         .comment-block.nested { margin-left: 16px; border-left: 2px solid var(--border-light); padding-left: 12px; border-bottom: none;}
 
-        /* --- PROFILE VIEW --- */
+        /* --- PROFILE VIEW & SHARE BTN --- */
         .profile-header { padding: 30px 16px; border-bottom: 1px solid var(--border-light); text-align: center; }
         .profile-avatar-large { width: 80px; height: 80px; border-radius: 50%; background: var(--text-main); color: white; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 600; margin: 0 auto 16px; }
         .profile-name { font-size: 20px; font-weight: 600; display: flex; justify-content: center; align-items: center; margin-bottom: 8px; flex-wrap: wrap;}
         .profile-stats { font-size: 15px; color: var(--text-muted); margin-bottom: 16px; }
         .profile-about { font-size: 14px; line-height: 1.5; text-align: left; background: var(--hover-bg); padding: 16px; border-radius: 12px; word-wrap: break-word; overflow-wrap: anywhere;}
+        
+        .share-profile-btn {
+            background: var(--bg-white); color: var(--text-main); border: 1px solid var(--border-light);
+            padding: 8px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer;
+            transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+        }
+        .share-profile-btn:hover { background: var(--hover-bg); border-color: var(--inbondz-brand); }
 
         /* --- SPLIT CHAT BAR --- */
-        .chat-bar {
-            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); 
-            width: 100%; max-width: 1000px; 
-            background: var(--bg-white); border-top: 1px solid var(--border-light);
-            padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom));
-            display: flex; align-items: center; z-index: 100;
-        }
-        .chat-input {
-            flex-grow: 1; background: var(--hover-bg); border: 1px solid var(--border-light);
-            padding: 14px 20px; border-radius: 999px; font-size: 15px; outline: none; color: var(--text-main);
-            transition: border-color 0.2s; width: 100%;
-        }
+        .chat-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1000px; background: var(--bg-white); border-top: 1px solid var(--border-light); padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); display: flex; align-items: center; z-index: 100; }
+        .chat-input { flex-grow: 1; background: var(--hover-bg); border: 1px solid var(--border-light); padding: 14px 20px; border-radius: 999px; font-size: 15px; outline: none; color: var(--text-main); transition: border-color 0.2s; width: 100%; }
         .chat-input:focus { border-color: var(--inbondz-brand); background: var(--bg-white); }
-        .chat-submit {
-            background: var(--text-main); color: white; border: none;
-            width: 44px; height: 44px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: opacity 0.2s;
-        }
+        .chat-submit { background: var(--text-main); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: opacity 0.2s; }
         .chat-submit:hover { opacity: 0.8; }
-        
         .btn-submit-url { margin-right: 12px; background: var(--hover-bg); color: var(--text-main); border: 1px solid var(--border-light); margin-left: 0; }
         .btn-search { margin-left: 12px; }
 
@@ -173,14 +122,14 @@
         .sheet-desc { font-size: 15px; color: var(--text-muted); line-height: 1.5; margin-bottom: 24px; padding: 0 10px;}
         .sheet-btn { width: 100%; background: var(--text-main); color: white; border: none; padding: 16px; border-radius: 999px; font-weight: 600; font-size: 16px; cursor: pointer; }
 
-        /* --- 404 STRICT ISOLATION --- */
-        .view-404-container { width: 100%; flex-direction: column; min-height: 100vh; background: var(--bg-white);}
-        .error-header { display: flex; justify-content: center; align-items: center; padding: 20px 40px; border-bottom: 1px solid var(--border-light); }
+        /* --- 404 STRICT ISOLATION (No Hamburger, No Donate) --- */
+        .view-404-container { width: 100%; flex-direction: column; min-height: 100vh; background: var(--bg-white); align-items: center; }
+        .error-header { width: 100%; display: flex; justify-content: center; align-items: center; padding: 20px 40px; border-bottom: 1px solid var(--border-light); }
         .error-logo { font-family: "Carter One", cursive; font-size: 28px; color: var(--inbondz-brand); text-decoration: none; letter-spacing: 0.5px; }
         .error-content-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
         .error-code { font-family: "Carter One", cursive; font-size: 80px; color: var(--border-light); margin-bottom: 16px; line-height: 1; }
         .error-msg { color: var(--text-muted); margin-bottom: 32px; font-size: 18px; max-width: 300px; line-height: 1.5;}
-        .btn-return { display: inline-block; background: var(--text-main); color: white; text-decoration: none; padding: 16px 32px; border-radius: 999px; font-weight: 600; font-size: 16px; }
+        .btn-return { display: inline-block; background: var(--text-main); color: white; text-decoration: none; padding: 16px 32px; border-radius: 999px; font-weight: 600; font-size: 16px; border: none; cursor: pointer;}
         @media (max-width: 768px) { .error-header { padding: 16px 20px; } }
     </style>
 </head>
@@ -212,9 +161,7 @@
                 <button class="chat-submit btn-submit-url" onclick="openSheet(null, 'network', 'submit')" title="Submit to Network">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 </button>
-                
                 <input type="text" id="globalInput" class="chat-input" placeholder="Search the network..." onkeydown="if(event.key === 'Enter') handleSearchAction()">
-                
                 <button onclick="handleSearchAction()" class="chat-submit btn-search">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </button>
@@ -229,7 +176,7 @@
         <div class="error-content-wrapper">
             <div class="error-code">404</div>
             <p class="error-msg">This directory does not exist on the Inbondz network.</p>
-            <a href="https://threads.inbondz.com" class="btn-return">Return to Threads</a>
+            <button onclick="window.location.href='https://threads.inbondz.com'" class="btn-return">Return to Threads</button>
         </div>
     </div>
 
@@ -243,13 +190,6 @@
     </div>
 
     <script>
-        const currentPath = window.location.pathname;
-        if (currentPath.endsWith('404.html')) {
-            document.getElementById('view-404').classList.add('active-flex');
-        } else {
-            document.getElementById('view-app').classList.add('active');
-        }
-
         const API = 'https://hacker-news.firebaseio.com/v0';
         const ALGOLIA = 'https://hn.algolia.com/api/v1';
         
@@ -269,6 +209,7 @@
         const ICON_COMMENT = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`;
         const ICON_LINK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`;
         const ICON_PARENT = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>`;
+        const ICON_SHARE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>`;
 
         let currentStoryIds = [];
         let currentLoadedIndex = 0;
@@ -278,7 +219,6 @@
             if (!htmlString) return '';
             const temp = document.createElement('div');
             temp.innerHTML = htmlString;
-            
             temp.querySelectorAll('a').forEach(a => { a.setAttribute('target', '_blank'); });
 
             const urlRegex = /(https?:\/\/[^\s<]+)/g;
@@ -299,7 +239,6 @@
         }
 
         const userCache = new Map();
-
         async function fetchUser(username) {
             if(!username) return null;
             if(userCache.has(username)) return userCache.get(username);
@@ -348,11 +287,8 @@
                 document.getElementById('sheetBtn').innerText = "Acknowledge & Proceed";
                 document.getElementById('sheetBtn').onclick = () => { 
                     closeSheet(); 
-                    if (payload === 'submit') {
-                        window.open(`https://news.ycombinator.com/submit`, '_blank');
-                    } else {
-                        window.open(`https://news.ycombinator.com/item?id=${payload}`, '_blank'); 
-                    }
+                    if (payload === 'submit') window.open(`https://news.ycombinator.com/submit`, '_blank');
+                    else window.open(`https://news.ycombinator.com/item?id=${payload}`, '_blank'); 
                 };
             }
 
@@ -398,7 +334,6 @@
                 currentStoryIds = await res.json();
                 currentLoadedIndex = 0;
                 document.getElementById('content').innerHTML = ''; 
-                
                 await loadNextBatch();
             } catch(e) { document.getElementById('content').innerHTML = '<div class="loader">Network Error. Please try again.</div>'; }
         }
@@ -421,15 +356,10 @@
                 if(loader) loader.remove();
                 
                 document.getElementById('content').insertAdjacentHTML('beforeend', html.join(''));
-                
                 currentLoadedIndex += BATCH_SIZE;
 
                 if (currentLoadedIndex < currentStoryIds.length) {
-                    const btnHtml = `
-                        <div id="load-more-container" style="padding: 30px; display: flex; justify-content: center;">
-                            <button onclick="loadNextBatch()" class="load-more-btn">See More Threads</button>
-                        </div>
-                    `;
+                    const btnHtml = `<div id="load-more-container" style="padding: 30px; display: flex; justify-content: center;"><button onclick="loadNextBatch()" class="load-more-btn">See More Threads</button></div>`;
                     document.getElementById('content').insertAdjacentHTML('beforeend', btnHtml);
                 }
             } catch(e) {
@@ -479,11 +409,7 @@
 
             let parentBtnHTML = '';
             if (item.parent) {
-                parentBtnHTML = `
-                    <button class="action-btn parent-btn" onclick="event.stopPropagation(); loadThread(${item.parent})">
-                        ${ICON_PARENT} Parent
-                    </button>
-                `;
+                parentBtnHTML = `<button class="action-btn parent-btn" onclick="event.stopPropagation(); loadThread(${item.parent})">${ICON_PARENT} Parent</button>`;
             }
 
             return `
@@ -520,10 +446,8 @@
                 
                 const storyFormat = { 
                     id: data.id, by: data.author, time: data.created_at_i, 
-                    title: data.title || data.story_title, 
-                    text: data.text, url: data.url, score: data.points, 
-                    descendants: data.children ? data.children.length : 0, 
-                    type: data.type, parent: data.parent_id 
+                    title: data.title || data.story_title, text: data.text, url: data.url, score: data.points, 
+                    descendants: data.children ? data.children.length : 0, type: data.type, parent: data.parent_id 
                 };
                 
                 let html = await renderCard(storyFormat);
@@ -535,7 +459,6 @@
                 } else {
                     html += '<div class="loader">No comments yet.</div>';
                 }
-                
                 document.getElementById('content').innerHTML = html;
             } catch(e) { document.getElementById('content').innerHTML = '<div class="loader">Failed to load thread.</div>'; }
         }
@@ -550,7 +473,6 @@
                         ${badge}
                     </div>
                     <div class="hn-text">${autoLink(node.text)}</div>
-                    
                     <div class="post-actions" style="max-width: 150px; margin-top: 8px;">
                         <button class="action-btn" onclick="event.stopPropagation(); openSheet(null, 'network', ${node.id})">${ICON_UPVOTE}</button>
                         <button class="action-btn" onclick="event.stopPropagation(); openSheet(null, 'network', ${node.id})">${ICON_COMMENT}</button>
@@ -562,6 +484,22 @@
                 html += kidsHtml.join('');
             }
             return html;
+        }
+
+        function copyProfileUrl(username) {
+            const url = `https://threads.inbondz.com/?profile=${username}`;
+            navigator.clipboard.writeText(url).then(() => {
+                const btn = document.getElementById('shareProfileBtn');
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
+                btn.style.borderColor = "var(--action-blue)";
+                btn.style.color = "var(--action-blue)";
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.style.borderColor = "var(--border-light)";
+                    btn.style.color = "var(--text-main)";
+                }, 2000);
+            });
         }
 
         async function viewProfile(username, skipHistory = false) {
@@ -582,6 +520,9 @@
                     <div class="profile-name">${username} ${badge}</div>
                     <div class="profile-stats">Joined ${date} · <strong>${user.karma}</strong> Karma</div>
                     ${user.about ? `<div class="profile-about hn-text">${autoLink(user.about)}</div>` : ''}
+                    <button id="shareProfileBtn" class="share-profile-btn" onclick="copyProfileUrl('${username}')">
+                        ${ICON_SHARE} Share Profile
+                    </button>
                 </div>
                 <div style="padding: 16px; font-weight: 600; border-bottom: 1px solid var(--border-light);">Network Submissions</div>
                 <div id="profile-feed"><div class="loader">Loading history...</div></div>
@@ -595,11 +536,9 @@
                     
                     const mappedItems = data.hits.map(h => ({
                         id: h.objectID, by: h.author, time: h.created_at_i, 
-                        title: h.title || h.story_title, 
-                        text: h.comment_text || h.story_text, 
+                        title: h.title || h.story_title, text: h.comment_text || h.story_text, 
                         url: h.url || h.story_url, score: h.points || 0, descendants: h.num_comments || 0, 
-                        type: h._tags && h._tags.includes('comment') ? 'comment' : 'story',
-                        parent: h.parent_id
+                        type: h._tags && h._tags.includes('comment') ? 'comment' : 'story', parent: h.parent_id
                     }));
                     
                     const feedHtml = await Promise.all(mappedItems.map(renderCard));
@@ -623,11 +562,9 @@
                 
                 const mappedItems = data.hits.map(h => ({
                     id: h.objectID, by: h.author, time: h.created_at_i, 
-                    title: h.title || h.story_title, 
-                    text: h.comment_text || h.story_text, 
+                    title: h.title || h.story_title, text: h.comment_text || h.story_text, 
                     url: h.url || h.story_url, score: h.points || 0, descendants: h.num_comments || 0, 
-                    type: h._tags && h._tags.includes('comment') ? 'comment' : 'story',
-                    parent: h.parent_id
+                    type: h._tags && h._tags.includes('comment') ? 'comment' : 'story', parent: h.parent_id
                 }));
                 const html = await Promise.all(mappedItems.map(renderCard));
                 document.getElementById('content').innerHTML = html.length ? html.join('') : '<div class="loader">No results found on the network.</div>';
@@ -637,37 +574,40 @@
         function handleSearchAction() {
             const val = document.getElementById('globalInput').value.trim();
             if(!val) return;
-            
             if (val.startsWith('@')) {
                 const username = val.substring(1); 
                 viewProfile(username);
                 document.getElementById('globalInput').value = '';
                 return;
             }
-
             handleSearch(val);
         }
 
+        // --- STRICT ROUTER LOGIC ---
         function router() {
             const path = window.location.pathname;
-            if (path.endsWith('404.html')) {
-                document.getElementById('view-404').classList.add('active-flex');
-                document.getElementById('view-app').classList.remove('active');
-                return;
-            } else {
+            const validPaths = ['/', '/index.html'];
+
+            if (validPaths.includes(path)) {
+                // Show Main App, Hide 404
                 document.getElementById('view-app').classList.add('active');
                 document.getElementById('view-404').classList.remove('active-flex');
-            }
 
-            const params = new URLSearchParams(window.location.search);
-            if (params.has('profile')) viewProfile(params.get('profile'), true);
-            else if (params.has('item')) loadThread(params.get('item'), true);
-            else if (params.has('search')) {
-                document.getElementById('globalInput').value = params.get('search');
-                handleSearch(params.get('search'), true);
+                // Process Query Parameters normally
+                const params = new URLSearchParams(window.location.search);
+                if (params.has('profile')) viewProfile(params.get('profile'), true);
+                else if (params.has('item')) loadThread(params.get('item'), true);
+                else if (params.has('search')) {
+                    document.getElementById('globalInput').value = params.get('search');
+                    handleSearch(params.get('search'), true);
+                }
+                else if (params.has('feed')) loadFeed(params.get('feed'), true);
+                else loadFeed('topstories', true);
+            } else {
+                // Anything not explicitly valid triggers the Strict 404
+                document.getElementById('view-404').classList.add('active-flex');
+                document.getElementById('view-app').classList.remove('active');
             }
-            else if (params.has('feed')) loadFeed(params.get('feed'), true);
-            else loadFeed('topstories', true);
         }
 
         window.addEventListener('popstate', router);
