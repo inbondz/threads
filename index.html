@@ -252,7 +252,7 @@
 
         async function getBadge(username) {
             if(username === 'inbondz' || username === 'wasimsk') {
-                return `<span class="badge-wrapper" onclick="openSheet(event, 'core', '${username}')">${TICK_BLUE} <img src="https://www.inbondz.com/favicon.png" style="width:14px;height:14px;margin-left:4px;border-radius:4px;"></span>`;
+                return `<span class="badge-wrapper" onclick="openSheet(event, 'core', '${username}')">${TICK_BLUE} <img src="favicon.svg" style="width:14px;height:14px;margin-left:4px;border-radius:4px;"></span>`;
             }
             const user = await fetchUser(username);
             if(!user) return '';
@@ -269,7 +269,7 @@
             document.getElementById('sheetIcon').innerHTML = ''; 
             
             if (type === 'core') {
-                document.getElementById('sheetIcon').innerHTML = `<div style="display:flex; align-items:center; gap:12px;">${TICK_BLUE_LARGE} <img src="https://www.inbondz.com/favicon.png" style="width:48px;height:48px;border-radius:8px;"></div>`;
+                document.getElementById('sheetIcon').innerHTML = `<div style="display:flex; align-items:center; gap:12px;">${TICK_BLUE_LARGE} <img src="favicon.svg" style="width:48px;height:48px;border-radius:8px;"></div>`;
                 document.getElementById('sheetTitle').innerText = "Verified Core Team";
                 document.getElementById('sheetDesc').innerText = "Verified by Inbondz. You are viewing an official Inbondz affiliated profile.";
                 document.getElementById('sheetBtn').innerText = "View Profile";
